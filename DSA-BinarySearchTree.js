@@ -188,6 +188,28 @@ function main () {
 
   main1();
 
+  function googleTree(){
+      const BST = new BinarySearchTree();
+      BST.insert(8, 8);
+      BST.insert(3, 3);
+      BST.insert(10, 10);
+      BST.insert(1, 1);
+      BST.insert(6, 6);
+      BST.insert(14, 14);
+      BST.insert(4, 4);
+      BST.insert(7, 7);
+      BST.insert(13, 13);
+      console.log(BST);
+      console.log(tree(BST));
+      console.log(findHeightOfTree(BST));
+      BST.right.right.left.key = 15;
+      console.log(isBST(BST));
+
+  }
+  googleTree();
+
+
+
 // 4. What does this program do?
 
 // if there is no tree, return 0 else return sum of all values within the tree. time complexity is O(n) because it has to get every single value in the tree,
@@ -199,6 +221,41 @@ function main () {
   }
 
   //5. Height of a BST
+   function findHeightOfTree(BST){
+       if(!BST){
+           return 0;
+       }
+       let left = findHeightOfTree(BST.left);
+       let right = findHeightOfTree(BST.right);
+       if(left>right){
+           return left +1;
+       }
+       return right +1;
+   }
+
+  //6. Is it a BST?
+    function isBST(BST){
+      if(!BST){
+        return true;
+      }
+      let left = isBST(BST.left);
+      let right = isBST(BST.right);
+      if(BST.left && BST.left.key>BST.key){
+          return false
+      }
+      if(BST.right && BST.right.key<BST.key){
+          return false;
+      }
+      if(!left || !right){
+          return false;
+      }
+      
+      return true;
+       
+    }
+
+
+  //7. 3rd largest node
 
   
 
